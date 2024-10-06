@@ -1,0 +1,21 @@
+services:
+  app:
+    image: myapp:latest
+    container_name: bank-container
+    labels:
+      org.springframework.boot.service-connection: postgres
+    environment:
+      RDS_HOSTNAME: postgres-container
+      RDS_PORT: 5432
+      RDS_DB_NAME: postgres
+      RDS_USERNAME: postgres
+      RDS_PASSWORD: root
+    ports:
+      - "8080:8080"  # Проброс порта для доступа к приложению
+    networks:
+      - app-network  # Подключаем приложение к той же сети
+
+networks:
+  app-network:
+    external: true  # Используем существующую сеть
+

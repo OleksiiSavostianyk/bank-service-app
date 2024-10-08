@@ -2,7 +2,7 @@ package com.alex.bankingservicesapp.service;
 
 import com.alex.bankingservicesapp.models.BankUser;
 
-public interface BankUserServiceInterface {
+public interface BankUserDataBaseInterface {
 
 
     public BankUser createBankUser(BankUser bankUser);

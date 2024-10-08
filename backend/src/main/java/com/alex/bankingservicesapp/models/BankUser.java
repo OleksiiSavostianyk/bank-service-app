@@ -37,6 +37,14 @@ public class BankUser {
     @Column(name = "user_password")
     private String password;
 
+    @Column(name = "user_invoice")
+    private long invoice;
+
+
+    @Column(name = "user_role", nullable = false)
+    private String role;
+
+
     @Column(name = "user_balance")
     private long balance;
 

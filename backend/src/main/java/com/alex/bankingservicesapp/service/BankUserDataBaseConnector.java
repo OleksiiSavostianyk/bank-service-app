@@ -5,16 +5,15 @@ import com.alex.bankingservicesapp.models.BankUser;
 import com.alex.bankingservicesapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class BankUserService implements BankUserServiceInterface {
+public class BankUserDataBaseConnector implements BankUserDataBaseInterface {
 
     private UserRepository userRepository;
 
 
     @Autowired
-    public BankUserService(UserRepository userRepository) {
+    public BankUserDataBaseConnector(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users List</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Стили для темного фона -->
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .main-container {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .user-card {
+            background-color: #333;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .user-card p {
+            margin: 5px 0;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .logout-btn {
+            background-color: #f44336; /* Красный цвет для кнопки выхода */
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <h1 class="title">Users List</h1>
+    <div id="users-list"></div> <!-- Место для отображения списка пользователей -->
+
+    <button class="btn logout-btn" onclick="Menu()">Menu</button> <!-- Кнопка выхода -->
+</div>
+
+<script>
+    // Получаем имя пользователя из локального хранилища
+    function getUsername() {
+        return localStorage.getItem('username');
+    }
+
+    // Функция для выхода
+    function Menu() {
+        // Здесь можете добавить код для выхода (например, очистка локального хранилища)
+        window.location.href = "menu.html"; // Переход на страницу меню
+    }
+
+    // Функция для получения списка пользователей
+    function fetchUsers() {
+        const username = getUsername(); // Получаем имя пользователя
+
+        fetch(`http://localhost:8080/account/users/with/transactions/${username}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch users. Please try again later.');
+                }
+                return response.json();
+            })
+            .then(users => {
+                displayUsers(users);
+            })
+            .catch(error => {
+                console.error('Error fetching users:', error);
+                document.getElementById('users-list').innerHTML = '<p style="color: red;">Failed to load users. Please try again later.</p>';
+            });
+    }
+
+    // Функция для отображения пользователей на странице
+    function displayUsers(users) {
+        const usersListDiv = document.getElementById('users-list');
+        usersListDiv.innerHTML = ''; // Очищаем предыдущее содержимое
+
+        users.forEach(user => {
+            const userCard = document.createElement('div');
+            userCard.classList.add('user-card');
+            userCard.innerHTML = `
+                <p><strong>Account Name:</strong> ${user.accountName}</p>
+                <p><strong>First Name:</strong> ${user.firstName}</p>
+                <p><strong>Last Name:</strong> ${user.lastName}</p>
+                <p><strong>Email:</strong> ${user.email}</p>
+                <p><strong>Invoice:</strong> ${user.invoice}</p>
+                <button class="btn" onclick="goToTransferPage('${user.accountName}')">Transfer</button>
+            `;
+            usersListDiv.appendChild(userCard);
+        });
+    }
+
+    // Функция для перехода на страницу перевода
+    function goToTransferPage(accountName) {
+        localStorage.setItem('transferToAccount', accountName); // Сохраняем имя аккаунта в локальное хранилище
+        window.location.href = "transferToUser.html"; // Переход на страницу перевода
+    }
+
+    // Вызов функции при загрузке страницы
+    document.addEventListener('DOMContentLoaded', fetchUsers);
+</script>
+</body>
+</html>

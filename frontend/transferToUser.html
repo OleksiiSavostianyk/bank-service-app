@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Money</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Стили для темного фона -->
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .main-container {
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+        .input-field {
+            margin-bottom: 15px;
+        }
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .logout-btn {
+            background-color: #f44336; /* Красный цвет для кнопки выхода */
+        }
+        .message {
+            margin-top: 10px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="main-container">
+    <h1 class="title">Transfer Money</h1>
+    <div id="recipient-name"></div> <!-- Имя получателя -->
+
+    <div class="input-field">
+        <label for="amount">Enter Amount:</label>
+        <input type="number" id="amount" placeholder="Amount" required />
+    </div>
+
+    <button class="btn" id="transferButton">Send</button> <!-- Кнопка отправки -->
+    <button class="btn" id="backButton">Back</button> <!-- Кнопка назад -->
+    <button class="btn logout-btn" onclick="goToMenu()">Menu</button> <!-- Кнопка меню -->
+
+    <div id="message" class="message"></div> <!-- Место для сообщений -->
+</div>
+
+<script>
+    // Получаем имя пользователя из локального хранилища
+    function getUsername() {
+        return localStorage.getItem('username');
+    }
+
+    // Функция для перехода в меню
+    function goToMenu() {
+        window.location.href = 'menu.html'; // Переход на страницу меню
+    }
+
+    // Функция для получения имени получателя из локального хранилища
+    function getTransferRecipient() {
+        return localStorage.getItem('transferToAccount');
+    }
+
+    // Устанавливаем имя получателя на страницу
+    document.addEventListener('DOMContentLoaded', function() {
+        const recipientName = getTransferRecipient();
+        document.getElementById('recipient-name').innerText = `Recipient: ${recipientName}`;
+    });
+
+    // Обработчик события для кнопки "Отправить"
+    document.getElementById('transferButton').addEventListener('click', async () => {
+        const amountInput = document.getElementById('amount').value.trim();
+        const senderName = getUsername(); // Получаем имя отправителя
+        const recipientName = getTransferRecipient(); // Получаем имя получателя
+
+        // Создаем объект платежа на основе пользовательского ввода
+        let payment = {
+            senderName: senderName,
+            money: parseFloat(amountInput),
+            recipientUsername: recipientName // Получатель передается как имя пользователя
+        };
+
+        try {
+            const response = await fetch('http://localhost:8080/payments/transfer/money', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payment),
+            });
+
+            const result = await response.text();
+            if (response.ok) {
+                // Сообщение об успехе
+                window.location.href = 'balance.html';
+            } else {
+                throw new Error(result); // Генерация ошибки, если ответ не OK
+            }
+        } catch (error) {
+            document.getElementById('message').textContent = `Error: ${error.message}`; // Сообщение об ошибке
+        }
+    });
+
+    // Обработчик события для кнопки "Назад"
+    document.getElementById('backButton').addEventListener('click', () => {
+        window.history.back(); // Возврат на предыдущую страницу
+    });
+</script>
+</body>
+</html>

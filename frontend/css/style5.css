@@ -1,0 +1,159 @@
+body {
+    background-color: #1a1a1a;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: white;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 140px;
+    text-align: center;
+}
+
+.blue-btn {
+    background-color: #007bff; /* Blue back button */
+}
+
+.blue-btn:hover {
+    background-color: #0056b3;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.menu-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #007bff; /* Blue menu button */
+}
+
+.menu-btn:hover {
+    background-color: #0056b3;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+#message {
+    margin-top: 10px;
+}
+
+
+
+
+
+
+/*body {*/
+/*    background-color: #1a1a1a;*/
+/*    color: white;*/
+/*    font-family: Arial, sans-serif;*/
+/*    margin: 0;*/
+/*}*/
+
+/*.main-container {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    height: 100vh;*/
+/*}*/
+
+/*h2 {*/
+/*    font-size: 2rem;*/
+/*    margin-bottom: 20px;*/
+/*}*/
+
+/*form {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    width: 300px;*/
+/*}*/
+
+/*label {*/
+/*    font-size: 1rem;*/
+/*    margin-bottom: 5px;*/
+/*}*/
+
+/*input {*/
+/*    padding: 10px;*/
+/*    margin-bottom: 15px;*/
+/*    border: 1px solid #555;*/
+/*    border-radius: 5px;*/
+/*    background-color: #2a2a2a;*/
+/*    color: white;*/
+/*}*/
+
+/*.btn {*/
+/*    background-color: #4CAF50;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    padding: 15px;*/
+/*    margin: 10px 0;*/
+/*    border-radius: 5px;*/
+/*    cursor: pointer;*/
+/*    width: 200px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.btn:hover {*/
+/*    background-color: #45a049;*/
+/*}*/
+
+/*.menu-btn {*/
+/*    position: absolute;*/
+/*    top: 20px;*/
+/*    right: 20px;*/
+/*    background-color: #007bff; !* Blue menu button *!*/
+/*}*/
+
+/*.menu-btn:hover {*/
+/*    background-color: #0056b3;*/
+/*}*/
+
+/*#message {*/
+/*    margin-top: 10px;*/
+/*}*/

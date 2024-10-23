@@ -39,12 +39,12 @@ function viewBalance() {
    window.location.href = "balance.html";
 }
 
-function accounts() {
-    alert("Accounts button clicked!");
+function settings() {
+   window.location.href = "settings.html";
 }
 
-function allTransactions() {
-    alert("Settings button clicked!");
+function userTransactions() {
+    window.location.href = "usersForPay.html";
 }
 
 function login() {
@@ -61,8 +61,8 @@ document.querySelector('#sendMoney').addEventListener('click', () => performActi
 document.querySelector('#accountInfoButton').addEventListener('click', () => performActionIfAuthenticated(accountInfo));
 document.querySelector('#viewTransactionsButton').addEventListener('click', () => performActionIfAuthenticated(viewTransactions));
 document.querySelector('#viewBalanceButton').addEventListener('click', () => performActionIfAuthenticated(viewBalance));
-document.querySelector('#accountsButton').addEventListener('click', () => performActionIfAuthenticated(accounts));
-document.querySelector('#settingsButton').addEventListener('click', () => performActionIfAuthenticated(allTransactions));
+document.querySelector('#accountsButton').addEventListener('click', () => performActionIfAuthenticated(settings));
+document.querySelector('#settingsButton').addEventListener('click', () => performActionIfAuthenticated(userTransactions));
 document.querySelector('#loginButton').addEventListener('click', () => performActionIfAuthenticated(login));
 document.querySelector('#signUpButton').addEventListener('click', () => performActionIfAuthenticated(signUp));
 

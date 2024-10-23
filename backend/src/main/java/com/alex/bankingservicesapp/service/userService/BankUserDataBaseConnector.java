@@ -4,6 +4,7 @@ package com.alex.bankingservicesapp.service.userService;
 import com.alex.bankingservicesapp.exception.UserNotFoundException;
 import com.alex.bankingservicesapp.models.BankUser;
 import com.alex.bankingservicesapp.models.Payment;
+import com.alex.bankingservicesapp.repository.PaymentRepository;
 import com.alex.bankingservicesapp.repository.UserRepository;
 import com.alex.bankingservicesapp.service.InvoiceGenerator;
 import com.alex.bankingservicesapp.service.RoleKeeper;
@@ -14,23 +15,30 @@ import org.springframework.http.ResponseEntity;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class BankUserDataBaseConnector implements BankUserDataBaseInterface {
 
     private UserRepository userRepository;
     private RoleKeeper roleKeeper;
+    private PaymentRepository paymentRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Autowired
     public BankUserDataBaseConnector(UserRepository userRepository,
                                      RoleKeeper roleKeeper,
-                                     BCryptPasswordEncoder bCryptPasswordEncoder){
+                                     BCryptPasswordEncoder bCryptPasswordEncoder,
+                                     PaymentRepository paymentRepository){
         this.roleKeeper = roleKeeper;
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.paymentRepository = paymentRepository;
     }
 
 
@@ -64,15 +72,23 @@ public class BankUserDataBaseConnector implements BankUserDataBaseInterface {
         return false;
     }
 
+
+
+
     @Override
     public Optional<BankUser> findByAccountName(String name) {
         return userRepository.findByAccountName(name);
     }
 
+
+
+
     @Override
     public Optional<BankUser> findByInvoice(long invoice) {
         return userRepository.findByInvoice(invoice);
     }
+
+
 
 
     @Override
@@ -85,12 +101,20 @@ public class BankUserDataBaseConnector implements BankUserDataBaseInterface {
         return bankUser.get();
     }
 
+
+
+
+
     @Override
     public boolean updateBankUser(BankUser bankUser) {
         BankUser updatedUser = userRepository.save(bankUser);
 
         return updatedUser != null;
     }
+
+
+
+
 
     @Override
     public Optional<BankUser> getUserForInfo(String accountName) {
@@ -102,5 +126,70 @@ public class BankUserDataBaseConnector implements BankUserDataBaseInterface {
      }
       return bankUser;
     }
+
+
+
+
+    @Override
+    public ResponseEntity<List<BankUser>> getAllBankUsersByAccountName(String accountName) {
+
+        Optional<BankUser> user = userRepository.findByAccountName(accountName);
+        if (user.isEmpty()){ return new ResponseEntity<>(HttpStatus.NOT_FOUND); }
+
+        List<Payment> payments = paymentRepository.findBySenderID(user.get().getId());
+
+        List<BankUser> bankUsers = getAllBankUsersByPayments(payments);
+
+        if (bankUsers.isEmpty()){ return  ResponseEntity.ok().build(); }
+        return  ResponseEntity.ok(bankUsers);
+    }
+
+
+
+
+    @Override
+    public ResponseEntity<Void> changePassword(String username, String oldPassword, String newPassword) {
+        Optional<BankUser> bankUser = userRepository.findByAccountName(username);
+        if (bankUser.isEmpty()){ return new ResponseEntity<>(HttpStatus.NOT_FOUND); }
+        if (!BCryptPasswordEncoder.matches(oldPassword, bankUser.get().getPassword())){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        try {
+        BankUser user = bankUser.get();
+        user.setPassword(BCryptPasswordEncoder.encode(newPassword));
+
+        userRepository.save(user);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        return ResponseEntity.ok().build();
+    }
+
+
+
+
+
+
+
+
+    protected List<BankUser> getAllBankUsersByPayments(List<Payment> payments) {
+
+        Set<String> accountNames = payments.stream()
+                .map(Payment::getRecipientUsername)
+                .collect(Collectors.toSet());
+
+
+        List<BankUser> bankUsers = userRepository.findAllByAccountNameIn(new ArrayList<>(accountNames));
+      bankUsers.forEach(bankUser -> {bankUser.setPassword(""); bankUser.setBalance(0.0);});
+        return bankUsers;
+    }
+
+
+
+
+
 
 }

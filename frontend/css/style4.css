@@ -1,0 +1,82 @@
+/* Основные стили для контейнера */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Темный фон */
+    color: white; /* Белый текст */
+}
+
+/* Стили для каждого платежа */
+.payment {
+    background-color: #1f1f1f; /* Темный фон для карточек платежей */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Тень для глубины */
+    transition: box-shadow 0.3s ease;
+}
+
+.payment:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Более сильная тень при наведении */
+}
+
+/* Заголовок платежа */
+.payment h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: #ffffff; /* Белый цвет текста */
+}
+
+/* Текстовое содержание */
+.payment p {
+    margin: 5px 0;
+    font-size: 1.1rem;
+    color: #d0d0d0; /* Светло-серый текст */
+}
+
+/* Стили для выделения важных элементов */
+.payment p strong {
+    color: #ffffff; /* Белый цвет для выделения важных частей */
+}
+
+/* Стиль для кнопки получения платежей */
+button#fetchPaymentsButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Тень для глубины */
+}
+
+button#fetchPaymentsButton:hover {
+    background-color: #0056b3;
+}
+
+/* Стиль для загрузки */
+#loading {
+    display: none;
+    font-size: 1.2rem;
+    color: #007bff;
+    margin-top: 20px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .payment {
+        padding: 15px;
+    }
+
+    .payment h3 {
+        font-size: 1.3rem;
+    }
+
+    .payment p {
+        font-size: 1rem;
+    }
+}

@@ -1,51 +1,72 @@
-// Check user authentication on each page load
 function checkAuthentication() {
-    fetch('http://localhost:8080/check/authentication')  // Adjust this endpoint to match your backend route for auth checks
+    return fetch('http://localhost:8080/check/authentication')
         .then(response => {
             if (response.status === 401) {
-                // If the user is not authenticated, redirect them to the login page
-                window.location.href = '/login.html';
+                // Если пользователь не аутентифицирован, перенаправить на страницу входа
+                window.location.href = 'http://localhost:8080/payments/get/response';
+                return false; // Пользователь не аутентифицирован
             }
+            return true; // Пользователь аутентифицирован
         })
         .catch(error => {
-            console.error('Error checking authentication:', error);
+            console.error('Ошибка проверки аутентификации:', error);
+            return false; // В случае ошибки считать пользователя не аутентифицированным
         });
 }
 
-// Call checkAuthentication when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    checkAuthentication();
-});
+// Вспомогательная функция для выполнения действия, если пользователь аутентифицирован
+async function performActionIfAuthenticated(action) {
+    const isAuthenticated = await checkAuthentication();
+    if (isAuthenticated) {
+        action(); // Выполнить действие, если пользователь аутентифицирован
+    }
+}
 
-// Your existing logic
-function transferFunds() {
-    alert("Transfer Funds button clicked!");
+// Пример обновленных функций
+function sendMoney() {
+    window.location.href = "transfer.html";
 }
 
 function accountInfo() {
-    window.location.href = "http://localhost:8080/payments/get/response";
+    window.location.href = "accountInfo.html";
 }
 
 function viewTransactions() {
-    alert("View Transactions button clicked!");
+    window.location.href = "allTransactions.html";
 }
 
 function viewBalance() {
-    alert("View Balance button clicked!");
+   window.location.href = "balance.html";
 }
 
 function accounts() {
     alert("Accounts button clicked!");
 }
 
-function settings() {
+function allTransactions() {
     alert("Settings button clicked!");
 }
 
 function login() {
-    window.location.href = "http://localhost:8080/payments/get/response";
+    window.location.href = 'authorization.html';
+
 }
 
 function signUp() {
     window.location.href = 'register.html';
 }
+
+// Обновляем обработчики событий кнопок
+document.querySelector('#sendMoney').addEventListener('click', () => performActionIfAuthenticated(sendMoney));
+document.querySelector('#accountInfoButton').addEventListener('click', () => performActionIfAuthenticated(accountInfo));
+document.querySelector('#viewTransactionsButton').addEventListener('click', () => performActionIfAuthenticated(viewTransactions));
+document.querySelector('#viewBalanceButton').addEventListener('click', () => performActionIfAuthenticated(viewBalance));
+document.querySelector('#accountsButton').addEventListener('click', () => performActionIfAuthenticated(accounts));
+document.querySelector('#settingsButton').addEventListener('click', () => performActionIfAuthenticated(allTransactions));
+document.querySelector('#loginButton').addEventListener('click', () => performActionIfAuthenticated(login));
+document.querySelector('#signUpButton').addEventListener('click', () => performActionIfAuthenticated(signUp));
+
+// Вызываем проверку аутентификации при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    checkAuthentication();
+});

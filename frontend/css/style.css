@@ -80,3 +80,130 @@ input:focus {
     transform: translateY(0); /* Reset lift on click */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Less shadow on click */
 }
+
+
+
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #1e1e1e; /* Dark background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+}
+
+.login-container {
+    max-width: 350px; /* Set a maximum width for the login box (narrower) */
+    padding: 25px; /* Increased padding for more space inside the container */
+    background: #2c2c2c; /* Darker background for the container */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Strong shadow for depth */
+    text-align: center; /* Center-align text within the container */
+    margin-right: 20px; /* Add margin to the right for positioning */
+}
+
+h2 {
+    color: #ffffff; /* White text for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+    font-weight: 600; /* Bold font for emphasis */
+}
+
+#balance-info {
+    color: #ffffff; /* White text for balance */
+    font-size: 1.2em; /* Larger text for balance info */
+}
+
+#balance-info p {
+    margin: 10px 0; /* Space around balance info */
+}
+
+p {
+    color: #ffffff; /* White text for any additional information */
+    font-size: 16px;
+}
+
+
+
+body {
+    background-color: #121212; /* Dark background */
+    color: white; /* White text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.transfer-container {
+    background-color: #1f1f1f; /* Background for the transfer container */
+    padding: 40px; /* Padding inside the container */
+    border-radius: 12px; /* Rounded corners for the container */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    text-align: center; /* Center-align text within the container */
+    max-width: 400px; /* Maximum width for the transfer container */
+    width: 100%; /* Full width for smaller screens */
+}
+
+h2 {
+    font-size: 2rem; /* Title font size */
+    margin-bottom: 20px; /* Space below the title */
+    font-weight: 600; /* Bold title */
+    color: #ffffff; /* White title text */
+}
+
+label {
+    display: block; /* Labels take up their own line */
+    margin: 10px 0 5px; /* Margin above and below the label */
+    color: #f4f4f4; /* Light gray for better readability */
+    text-align: left; /* Align text to the left */
+}
+
+input {
+    padding: 15px; /* Padding for input fields */
+    border-radius: 12px; /* Rounded corners */
+    border: 1px solid #444; /* Border color */
+    background-color: #2a2a2a; /* Input background color */
+    color: white; /* Input text color */
+    font-size: 16px; /* Input font size */
+}
+
+input:focus {
+    outline: none; /* Remove outline */
+    border-color: #ffffff; /* Highlight border color on focus */
+}
+
+button {
+    background-color: #007bff; /* Blue button background color */
+    color: #ffffff; /* Button text color */
+    border: none; /* No border */
+    border-radius: 12px; /* Soft rounded corners */
+    padding: 15px 50px; /* Larger padding for a bolder button */
+    font-size: 18px; /* Font size */
+    font-weight: 500; /* Slightly thicker font */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.2s; /* Smooth transitions */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue background on hover */
+    transform: translateY(-5px); /* Slight button lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+button:active {
+    background-color: #004085; /* Even darker blue on press */
+    transform: translateY(0); /* Reset lift on click */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Less shadow on click */
+}
+
+#message {
+    margin-top: 15px; /* Space above the message div */
+    color: #ff3b30; /* Red color for error messages */
+    text-align: center; /* Center-align error messages */
+}
+
+

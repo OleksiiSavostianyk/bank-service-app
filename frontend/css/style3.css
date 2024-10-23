@@ -1,0 +1,83 @@
+body {
+    background-color: #121212; /* Dark background */
+    color: white; /* White text */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.transfer-container {
+    text-align: center;
+    background-color: #1f1f1f; /* Background for form */
+    padding: 60px; /* Increased padding inside the container */
+    border-radius: 12px; /* Rounded corners for the container */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    width: 400px; /* Increased width of the container */
+}
+
+h2 {
+    font-size: 2.5rem; /* Slightly smaller than before */
+    margin-bottom: 40px; /* Space below title */
+    font-weight: 600; /* Bold title */
+    color: #ffffff;
+}
+
+label {
+    margin-top: 20px; /* Space above labels */
+    font-size: 1.2rem; /* Larger font for labels */
+    display: block; /* Ensures labels are block elements */
+    text-align: left; /* Align text to the left for better readability */
+}
+
+input {
+    padding: 15px; /* Padding for input fields */
+    border-radius: 12px; /* Rounded corners */
+    border: 1px solid #444; /* Border color */
+    background-color: #2a2a2a; /* Input background color */
+    color: white; /* Input text color */
+    font-size: 16px; /* Input font size */
+    margin-top: 10px; /* Space between label and input */
+    width: 100%; /* Full width of the input fields */
+}
+
+input:focus {
+    outline: none; /* Remove outline */
+    border-color: #ffffff; /* Highlight border color on focus */
+}
+
+button {
+    background-color: #007bff; /* Blue button background color */
+    color: #ffffff; /* Button text color */
+    border: none; /* No border */
+    border-radius: 12px; /* Soft rounded corners */
+    padding: 15px 30px; /* Larger padding for a bolder button */
+    font-size: 18px; /* Font size */
+    font-weight: 500; /* Slightly thicker font */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.2s; /* Smooth transitions */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-top: 15px; /* Space between buttons */
+    width: 100%; /* Full width buttons for consistency */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue background on hover */
+    transform: translateY(-5px); /* Slight button lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+button:active {
+    background-color: #004085; /* Even darker blue on press */
+    transform: translateY(0); /* Reset lift on click */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Less shadow on click */
+}
+
+#message {
+    margin-top: 20px; /* Space above the message */
+    font-size: 1.2rem; /* Larger font size for messages */
+}
+
+

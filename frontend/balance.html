@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Balance</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Custom styles for this page -->
+</head>
+<body>
+<div class="login-container">
+    <h2>Account Balance</h2>
+    <div id="balance-info"></div> <!-- Placeholder to display the balance -->
+
+    <button class="btn" onclick="goBack()">Menu</button> <!-- Button to go back -->
+</div>
+
+<script src="js/balance.js"></script> <!-- Подключаем JS для работы с данными -->
+<script>
+    // Функция для возврата на предыдущую страницу
+    function goBack() {
+        window.location.href = "menu.html"; // Возвращаемся на предыдущую страницу
+    }
+</script>
+</body>
+</html>

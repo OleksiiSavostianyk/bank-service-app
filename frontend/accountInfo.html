@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Information</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Custom styles for this page -->
+</head>
+<body>
+<div class="main-container">
+    <h1 class="title">Account Information</h1>
+    <div id="account-info"></div> <!-- Placeholder to display account info -->
+
+    <button class="btn" onclick="goBack()">Go Back</button> <!-- Back to previous page -->
+</div>
+
+<!-- Подключение файла api.js -->
+<script src="js/api.js"></script>
+
+<!-- Вызов функции для загрузки информации об аккаунте при загрузке страницы -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchAccountInfo();  // Вызов функции для загрузки данных об аккаунте
+    });
+</script>
+</body>
+</html>

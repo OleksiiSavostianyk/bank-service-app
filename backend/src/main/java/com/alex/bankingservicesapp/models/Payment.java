@@ -1,14 +1,41 @@
 package com.alex.bankingservicesapp.models;
 
 
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
+@Entity(name = "transactions")
+@ToString
+@NoArgsConstructor
 public class Payment {
 
-    private int payment_id;
-    private BankUser bank_user;
-    private long invoiceForPayment;
-    private long price;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long paymentID;
+
+    @Column(name = "sender_id")
+    private long senderID;
+
+    @Column(name = "sender_name")
+    private String senderName;
+
+    @Column(name = "sender_invoice")
+    private long senderInvoice;
+
+    @Column(name = "recipient_username")
+    private String recipientUsername;
+
+    @Column(name = "")
+    private long recipientInvoice;
+
+    @Column(name = "money")
+    private double money;
+
+    @Column(name = "date")
+    private String date;
 
 }

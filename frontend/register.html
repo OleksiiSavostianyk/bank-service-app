@@ -53,24 +53,23 @@
             },
             body: JSON.stringify(data),
         })
-            .then(response => {
-                if (response.ok) {
-                    // Успешный ответ
-                    console.log("Registration successful!");
-                    // Можно перенаправить пользователя или отобразить сообщение
+            .then(response => response.json()) // Получаем ответ как JSON
+            .then(result => {
+                if (result.status === 'success') {
+                     window.location.href = "menu.html"; // Замените на правильный URL страницы меню
                 } else {
-                    // Обработка ошибок
-                    console.error("Registration failed:", response.statusText);
+                    // Если регистрация не удалась, выводим сообщение об ошибке
+                    alert(result.message || "Registration failed.");
                 }
             })
             .catch(error => {
                 console.error("Error:", error);
+                alert("An error occurred during registration. Please try again.");
             });
     });
 
-    // Функция для возврата на страницу логина
     function goToLogin() {
-        window.location.href = "/login"; // Замените на нужный URL страницы логина
+        window.location.href = ""; // Переход на страницу логина
     }
 </script>
 

@@ -46,10 +46,10 @@ public class BankUser {
 
 
     @Column(name = "user_balance")
-    private long balance;
+    private Double balance;
 
 
-    public BankUser(String accountName, String firstName, String lastName, String email, String password, long balance) {
+    public BankUser(String accountName, String firstName, String lastName, String email, String password, Double balance) {
         this.accountName = accountName;
         this.firstName = firstName;
         this.lastName = lastName;

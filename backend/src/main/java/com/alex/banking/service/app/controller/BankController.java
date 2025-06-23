@@ -1,14 +1,13 @@
-package com.alex.bankingservicesapp.controller;
+package com.alex.banking.service.app.controller;
 
-import com.alex.bankingservicesapp.models.BankUser;
-import com.alex.bankingservicesapp.service.userService.BankUserDataBaseInterface;
+import com.alex.banking.service.app.models.BankUser;
+import com.alex.banking.service.app.service.userService.BankUserDataBaseInterface;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController()
@@ -35,7 +34,7 @@ public class BankController {
 
     @GetMapping("/users/with/transactions/{username}")
     public ResponseEntity<List<BankUser>> getAllUsersWithTransactions(@PathVariable String username) {
-        System.out.println("heloooo");
+
         return bankUserDataBaseConnector.getAllBankUsersByAccountName(username);
     }
 

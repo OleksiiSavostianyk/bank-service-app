@@ -1,14 +1,14 @@
-package com.alex.bankingservicesapp.service.userService;
+package com.alex.banking.service.app.service.userService;
 
 
-import com.alex.bankingservicesapp.exception.UserNotFoundException;
-import com.alex.bankingservicesapp.models.BankUser;
-import com.alex.bankingservicesapp.models.Payment;
-import com.alex.bankingservicesapp.repository.PaymentRepository;
-import com.alex.bankingservicesapp.repository.UserRepository;
-import com.alex.bankingservicesapp.service.InvoiceGenerator;
-import com.alex.bankingservicesapp.service.RoleKeeper;
-import com.alex.bankingservicesapp.service.authorizationService.BCryptPasswordEncoder;
+import com.alex.banking.service.app.exception.UserNotFoundException;
+import com.alex.banking.service.app.models.BankUser;
+import com.alex.banking.service.app.models.Payment;
+import com.alex.banking.service.app.repository.PaymentRepository;
+import com.alex.banking.service.app.repository.UserRepository;
+import com.alex.banking.service.app.service.InvoiceGenerator;
+import com.alex.banking.service.app.service.RoleKeeper;
+import com.alex.banking.service.app.service.authorizationService.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

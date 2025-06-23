@@ -1,34 +1,77 @@
-# Getting Started
+ bank-serviсe-app
 
-### Reference Documentation
+Full-stack banking service application with a custom login system, built using Spring Boot and plain JavaScript. This project simulates a simplified online banking system with account management, transactions, and user registration.
 
-For further reference, please consider the following sections:
+Project Structure
+	•	Backend: Java 17, Spring Boot, PostgreSQL, Hibernate (JPA), JUnit, Mockito, Lombok
+	•	Frontend: HTML, CSS, plain JavaScript
+	•	Dockerized: Backend and frontend run in separate containers via Docker Compose
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/3.3.4/maven-plugin)
-* [Create an OCI image](https://docs.spring.io/spring-boot/3.3.4/maven-plugin/build-image.html)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.3.4/reference/htmlsingle/index.html#data.sql.jpa-and-spring-data)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/3.3.4/reference/htmlsingle/index.html#using.devtools)
-* [Spring Security](https://docs.spring.io/spring-boot/docs/3.3.4/reference/htmlsingle/index.html#web.security)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.3.4/reference/htmlsingle/index.html#web)
+Features
+	•	User registration and login (with password hashing using BCryptPasswordEncoder)
+	•	Account balance and invoice generation
+	•	Money transfer between users
+	•	View recent transactions and users interacted with
+	•	Ability to add users to favorites
+	•	Change password functionality
+	•	RESTful API
+	•	Custom error handling (without Spring Security)
+	•	Fully dockerized setup (PostgreSQL expected to be running externally)
 
-### Guides
+Folder Structure
 
-The following guides illustrate how to use some features concretely:
+bank-serviсe-app/
+│
+├── backend/
+│   ├── src/main/java/com/alex/banking/service/app/
+│   │   ├── config/
+│   │   ├── controller/
+│   │   ├── exception/
+│   │   ├── models/
+│   │   ├── repository/
+│   │   └── service/
+│   ├── Dockerfile
+│   └── pom.xml
+│
+├── frontend/
+│   ├── index.html
+│   ├── css/
+│   └── js/
+│
+├── docker-compose.yml
+└── README.md
 
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Securing a Web Application](https://spring.io/guides/gs/securing-web/)
-* [Spring Boot and OAuth2](https://spring.io/guides/tutorials/spring-boot-oauth2/)
-* [Authenticating a User with LDAP](https://spring.io/guides/gs/authenticating-ldap/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
+Docker Setup
 
-### Maven Parent overrides
+To run the application:
+	1.	Build images:
 
-Due to Maven's design, elements are inherited from the parent POM to the project POM.
-While most of the inheritance is fine, it also inherits unwanted elements like `<license>` and `<developers>` from the
-parent.
-To prevent this, the project POM contains empty overrides for these elements.
-If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
+docker build -t my-backend ./backend
+docker build -t my-frontend ./frontend
 
+	2.	Run with Docker Compose:
+
+docker-compose up
+
+PostgreSQL must be running in a separate container or externally. You can modify docker-compose.yml to include a DB service if needed.
+
+Testing
+	•	Unit tests are written using JUnit and Mockito
+	•	Services are tested in isolation
+	•	Mocking is used for repositories
+
+Technologies Used
+	•	Java 17
+	•	Spring Boot
+	•	JPA / Hibernate
+	•	PostgreSQL
+	•	Docker, Docker Compose
+	•	JUnit, Mockito
+	•	Lombok
+	•	HTML / CSS / JavaScript
+
+Author
+
+Oleksii Savostianyk
+
+GitHub repository: https://github.com/OleksiiSavostianyk/bank-servise-app.git

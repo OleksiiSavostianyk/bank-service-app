@@ -1,8 +1,8 @@
-package com.alex.bankingservicesapp.service.paymentService;
+package com.alex.banking.service.app.service.paymentService;
 
-import com.alex.bankingservicesapp.exception.NoSuchPaymentException;
-import com.alex.bankingservicesapp.models.Payment;
-import com.alex.bankingservicesapp.repository.PaymentRepository;
+import com.alex.banking.service.app.exception.NoSuchPaymentException;
+import com.alex.banking.service.app.models.Payment;
+import com.alex.banking.service.app.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

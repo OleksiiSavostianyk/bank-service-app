@@ -1,11 +1,8 @@
-package com.alex.bankingservicesapp.models;
+package com.alex.banking.service.app.models;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 
 import java.util.Objects;

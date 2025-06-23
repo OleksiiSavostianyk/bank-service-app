@@ -1,9 +1,8 @@
-package com.alex.bankingservicesapp.service.authorizationService;
-import io.jsonwebtoken.Claims;
+package com.alex.banking.service.app.service.authorizationService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import com.alex.bankingservicesapp.models.BankUser;
-import com.alex.bankingservicesapp.service.userService.BankUserDataBaseInterface;
+import com.alex.banking.service.app.models.BankUser;
+import com.alex.banking.service.app.service.userService.BankUserDataBaseInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -36,17 +35,4 @@ public class AuthService implements AuthServiceInterface {
         return Optional.empty();
     }
 
-
-    private  String generateToken(BankUser user) {
-        long expirationTime = 1000 * 60 * 60; // 1 час
-        Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + expirationTime);
-
-        return Jwts.builder()
-                .setSubject(user.getAccountName())
-                .setIssuedAt(now)
-                .setExpiration(expiryDate)
-                .signWith(SignatureAlgorithm.HS512, secretKey) // Используй свой секретный ключ
-                .compact();
-    }
 }

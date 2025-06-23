@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Options</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Подключаем стили -->
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             background-color: #1a1a1a;
@@ -37,14 +37,14 @@
         }
 
         .coming-soon-btn {
-            background-color: #808080; /* Серый цвет для кнопок "Coming Soon" */
+            background-color: #808080;
         }
 
         .menu-btn {
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: #007bff; /* Красная кнопка для выхода в меню */
+            background-color: #007bff;
         }
 
         .menu-btn:hover {
@@ -60,18 +60,18 @@
     <button class="btn coming-soon-btn">Coming Soon</button>
 </div>
 
-<!-- Кнопка выхода в меню -->
+
 <button class="btn menu-btn" id="menuButton">Menu</button>
 
 <script>
-    // Обработчик нажатия на кнопку "Change Password"
+
     document.getElementById('changePasswordBtn').addEventListener('click', () => {
-        window.location.href = 'changePassword.html'; // Перенаправляем на страницу смены пароля
+        window.location.href = 'changePassword.html';
     });
 
-    // Обработчик для кнопки выхода в меню
+
     document.getElementById('menuButton').addEventListener('click', () => {
-        window.location.href = 'menu.html'; // Перенаправляем в меню
+        window.location.href = 'menu.html';
     });
 </script>
 

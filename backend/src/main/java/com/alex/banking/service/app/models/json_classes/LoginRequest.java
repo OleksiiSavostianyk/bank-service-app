@@ -1,4 +1,4 @@
-package com.alex.bankingservicesapp.models.json_classes;
+package com.alex.banking.service.app.models.json_classes;
 
 public class LoginRequest {
     private String username;

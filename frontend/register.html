@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, content-scale=1.0">
     <title>Registration</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Подключаем общий файл стилей -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="overlay"></div>
@@ -19,22 +19,22 @@
         <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
         <button type="submit" class="btn">Register</button>
     </form>
-    <button class="btn" onclick="goToLogin()">Back to Login</button> <!-- Кнопка возврата на страницу логина -->
+    <button class="btn" onclick="goToLogin()">Back to Login</button>
 </div>
 
 <script>
     document.getElementById("registrationForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Предотвращаем стандартное поведение формы
+        event.preventDefault();
 
-        // Собираем данные формы
+
         const formData = new FormData(event.target);
         const password = formData.get("password");
         const confirmPassword = formData.get("confirmPassword");
 
-        // Проверка совпадения паролей
+
         if (password !== confirmPassword) {
-            alert("Passwords do not match!"); // Уведомление об ошибке
-            return; // Прерываем выполнение, если пароли не совпадают
+            alert("Passwords do not match!");
+            return;
         }
 
         const data = {
@@ -45,7 +45,6 @@
             password: password
         };
 
-        // Отправляем данные на сервер
         fetch("http://localhost:8080/authorization/registration", {
             method: "POST",
             headers: {
@@ -53,12 +52,11 @@
             },
             body: JSON.stringify(data),
         })
-            .then(response => response.json()) // Получаем ответ как JSON
+            .then(response => response.json())
             .then(result => {
                 if (result.status === 'success') {
-                     window.location.href = "menu.html"; // Замените на правильный URL страницы меню
+                     window.location.href = "menu.html";
                 } else {
-                    // Если регистрация не удалась, выводим сообщение об ошибке
                     alert(result.message || "Registration failed.");
                 }
             })
@@ -69,7 +67,7 @@
     });
 
     function goToLogin() {
-        window.location.href = ""; // Переход на страницу логина
+        window.location.href = "";
     }
 </script>
 

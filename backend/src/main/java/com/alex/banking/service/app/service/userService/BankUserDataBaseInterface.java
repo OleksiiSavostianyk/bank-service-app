@@ -1,11 +1,8 @@
-package com.alex.bankingservicesapp.service.userService;
+package com.alex.banking.service.app.service.userService;
 
-import com.alex.bankingservicesapp.models.BankUser;
-import com.alex.bankingservicesapp.models.Payment;
+import com.alex.banking.service.app.models.BankUser;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

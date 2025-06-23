@@ -1,4 +1,4 @@
-package com.alex.bankingservicesapp.exception;
+package com.alex.banking.service.app.exception;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(String message) {

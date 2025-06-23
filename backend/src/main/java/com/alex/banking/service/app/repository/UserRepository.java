@@ -1,6 +1,6 @@
-package com.alex.bankingservicesapp.repository;
+package com.alex.banking.service.app.repository;
 
-import com.alex.bankingservicesapp.models.BankUser;
+import com.alex.banking.service.app.models.BankUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

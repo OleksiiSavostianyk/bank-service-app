@@ -1,4 +1,4 @@
-package com.alex.bankingservicesapp.config;
+package com.alex.banking.service.app.config;
 
 
 import org.springframework.context.annotation.Bean;

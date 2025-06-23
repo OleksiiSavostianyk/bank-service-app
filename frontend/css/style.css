@@ -1,6 +1,6 @@
 body {
-    background-color: #121212; /* Dark background */
-    color: white; /* White text */
+    background-color: #121212;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,68 +10,68 @@ body {
 }
 
 .overlay {
-    position: fixed; /* Fixed positioning for the overlay */
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for contrast */
-    z-index: 1; /* Place overlay on top */
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
 }
 
 .main-container {
     text-align: center;
-    position: relative; /* Position relative to overlay */
-    z-index: 2; /* Ensure content is above the overlay */
-    background-color: #1f1f1f; /* Background for form */
-    padding: 40px; /* Padding inside the container */
-    border-radius: 12px; /* Rounded corners for the container */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    position: relative; /
+    z-index: 2;
+    background-color: #1f1f1f;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .title {
-    font-size: 3rem; /* Large title text */
+    font-size: 3rem;
     margin-bottom: 40px;
-    font-weight: 600; /* Apple-like bold title */
+    font-weight: 600;
     color: #ffffff;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between fields */
+    gap: 20px;
 }
 
 input {
-    padding: 15px; /* Padding for input fields */
-    border-radius: 12px; /* Rounded corners */
-    border: 1px solid #444; /* Border color */
-    background-color: #2a2a2a; /* Input background color */
-    color: white; /* Input text color */
-    font-size: 16px; /* Input font size */
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    color: white;
+    font-size: 16px;
 }
 
 input:focus {
-    outline: none; /* Remove outline */
-    border-color: #ffffff; /* Highlight border color on focus */
+    outline: none;
+    border-color: #ffffff;
 }
 
 .btn {
-    background-color: #007bff; /* Blue button background color */
-    color: #ffffff; /* Button text color */
-    border: none; /* No border */
-    border-radius: 12px; /* Soft rounded corners */
-    padding: 15px 50px; /* Larger padding for a bolder button */
-    font-size: 18px; /* Font size */
-    font-weight: 500; /* Slightly thicker font */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.2s; /* Smooth transitions */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 50px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
-    background-color: #0056b3; /* Darker blue background on hover */
-    transform: translateY(-5px); /* Slight button lift on hover */
+    background-color: #0056b3;
+    transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
 }
 

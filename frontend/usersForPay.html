@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users List</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Стили для темного фона -->
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             background-color: #1a1a1a;
@@ -38,33 +38,31 @@
             background-color: #45a049;
         }
         .logout-btn {
-            background-color: #f44336; /* Красный цвет для кнопки выхода */
+            background-color: #f44336;
         }
     </style>
 </head>
 <body>
 <div class="main-container">
     <h1 class="title">Users List</h1>
-    <div id="users-list"></div> <!-- Место для отображения списка пользователей -->
+    <div id="users-list"></div>
 
-    <button class="btn logout-btn" onclick="Menu()">Menu</button> <!-- Кнопка выхода -->
+    <button class="btn logout-btn" onclick="Menu()">Menu</button>
 </div>
 
 <script>
-    // Получаем имя пользователя из локального хранилища
+
     function getUsername() {
         return localStorage.getItem('username');
     }
 
     // Функция для выхода
     function Menu() {
-        // Здесь можете добавить код для выхода (например, очистка локального хранилища)
         window.location.href = "menu.html"; // Переход на страницу меню
     }
 
-    // Функция для получения списка пользователей
     function fetchUsers() {
-        const username = getUsername(); // Получаем имя пользователя
+        const username = getUsername();
 
         fetch(`http://localhost:8080/account/users/with/transactions/${username}`, {
             method: 'GET',
@@ -87,10 +85,10 @@
             });
     }
 
-    // Функция для отображения пользователей на странице
+
     function displayUsers(users) {
         const usersListDiv = document.getElementById('users-list');
-        usersListDiv.innerHTML = ''; // Очищаем предыдущее содержимое
+        usersListDiv.innerHTML = '';
 
         users.forEach(user => {
             const userCard = document.createElement('div');
@@ -107,13 +105,13 @@
         });
     }
 
-    // Функция для перехода на страницу перевода
+
     function goToTransferPage(accountName) {
-        localStorage.setItem('transferToAccount', accountName); // Сохраняем имя аккаунта в локальное хранилище
-        window.location.href = "transferToUser.html"; // Переход на страницу перевода
+        localStorage.setItem('transferToAccount', accountName);
+        window.location.href = "transferToUser.html";
     }
 
-    // Вызов функции при загрузке страницы
+
     document.addEventListener('DOMContentLoaded', fetchUsers);
 </script>
 </body>

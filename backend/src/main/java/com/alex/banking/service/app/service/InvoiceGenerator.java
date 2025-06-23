@@ -1,4 +1,4 @@
-package com.alex.bankingservicesapp.service;
+package com.alex.banking.service.app.service;
 
 public class InvoiceGenerator {
 

@@ -1,4 +1,4 @@
-package com.alex.bankingservicesapp.models;
+package com.alex.banking.service.app.models;
 
 
 import jakarta.persistence.*;

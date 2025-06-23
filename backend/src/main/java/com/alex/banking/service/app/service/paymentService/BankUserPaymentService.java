@@ -1,10 +1,10 @@
-package com.alex.bankingservicesapp.service.paymentService;
+package com.alex.banking.service.app.service.paymentService;
 
-import com.alex.bankingservicesapp.exception.NotEnoughMoneyException;
-import com.alex.bankingservicesapp.exception.UserNotFoundException;
-import com.alex.bankingservicesapp.models.BankUser;
-import com.alex.bankingservicesapp.models.Payment;
-import com.alex.bankingservicesapp.service.userService.BankUserDataBaseInterface;
+import com.alex.banking.service.app.exception.NotEnoughMoneyException;
+import com.alex.banking.service.app.exception.UserNotFoundException;
+import com.alex.banking.service.app.models.BankUser;
+import com.alex.banking.service.app.models.Payment;
+import com.alex.banking.service.app.service.userService.BankUserDataBaseInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;

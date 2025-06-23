@@ -1,11 +1,10 @@
-package com.alex.bankingservicesapp.controller;
+package com.alex.banking.service.app.controller;
 
 
-import com.alex.bankingservicesapp.models.Payment;
-import com.alex.bankingservicesapp.service.userService.BankUserDataBaseInterface;
-import com.alex.bankingservicesapp.service.paymentService.BankUserPaymentInterface;
+import com.alex.banking.service.app.models.Payment;
+import com.alex.banking.service.app.service.userService.BankUserDataBaseInterface;
+import com.alex.banking.service.app.service.paymentService.BankUserPaymentInterface;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
@@ -27,15 +26,16 @@ public class BankPaymentController {
 
 
     @PostMapping("/transfer/money")
-    public ResponseEntity<String> transferMoney(@RequestBody Payment payment ) {
+    public ResponseEntity<String> transferMoney(@RequestBody Payment payment) {
 
         return bankUserPaymentService.transfer(payment);
     }
 
     @GetMapping("/all/payments/{username}")
-    private ResponseEntity<List<Payment>> getAllPayments(@PathVariable String username) {
+    public  ResponseEntity<List<Payment>> getAllPayments(@PathVariable String username) {
         return bankUserPaymentService.getAllPayments(username);
     }
+
 
 
 

@@ -1,7 +1,7 @@
-package com.alex.bankingservicesapp.service.paymentService;
+package com.alex.banking.service.app.service.paymentService;
 
-import com.alex.bankingservicesapp.models.BankUser;
-import com.alex.bankingservicesapp.models.Payment;
+import com.alex.banking.service.app.models.BankUser;
+import com.alex.banking.service.app.models.Payment;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

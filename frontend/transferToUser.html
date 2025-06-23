@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transfer Money</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Стили для темного фона -->
+    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             background-color: #1a1a1a;
@@ -36,7 +36,7 @@
             background-color: #45a049;
         }
         .logout-btn {
-            background-color: #f44336; /* Красный цвет для кнопки выхода */
+            background-color: #f44336;
         }
         .message {
             margin-top: 10px;
@@ -47,53 +47,53 @@
 <body>
 <div class="main-container">
     <h1 class="title">Transfer Money</h1>
-    <div id="recipient-name"></div> <!-- Имя получателя -->
+    <div id="recipient-name"></div>
 
     <div class="input-field">
         <label for="amount">Enter Amount:</label>
         <input type="number" id="amount" placeholder="Amount" required />
     </div>
 
-    <button class="btn" id="transferButton">Send</button> <!-- Кнопка отправки -->
-    <button class="btn" id="backButton">Back</button> <!-- Кнопка назад -->
-    <button class="btn logout-btn" onclick="goToMenu()">Menu</button> <!-- Кнопка меню -->
+    <button class="btn" id="transferButton">Send</button>
+    <button class="btn" id="backButton">Back</button>
+    <button class="btn logout-btn" onclick="goToMenu()">Menu</button>
 
-    <div id="message" class="message"></div> <!-- Место для сообщений -->
+    <div id="message" class="message"></div>
 </div>
 
 <script>
-    // Получаем имя пользователя из локального хранилища
+
     function getUsername() {
         return localStorage.getItem('username');
     }
 
-    // Функция для перехода в меню
+
     function goToMenu() {
-        window.location.href = 'menu.html'; // Переход на страницу меню
+        window.location.href = 'menu.html';
     }
 
-    // Функция для получения имени получателя из локального хранилища
+
     function getTransferRecipient() {
         return localStorage.getItem('transferToAccount');
     }
 
-    // Устанавливаем имя получателя на страницу
+
     document.addEventListener('DOMContentLoaded', function() {
         const recipientName = getTransferRecipient();
         document.getElementById('recipient-name').innerText = `Recipient: ${recipientName}`;
     });
 
-    // Обработчик события для кнопки "Отправить"
+
     document.getElementById('transferButton').addEventListener('click', async () => {
         const amountInput = document.getElementById('amount').value.trim();
-        const senderName = getUsername(); // Получаем имя отправителя
-        const recipientName = getTransferRecipient(); // Получаем имя получателя
+        const senderName = getUsername();
+        const recipientName = getTransferRecipient();
 
-        // Создаем объект платежа на основе пользовательского ввода
+
         let payment = {
             senderName: senderName,
             money: parseFloat(amountInput),
-            recipientUsername: recipientName // Получатель передается как имя пользователя
+            recipientUsername: recipientName
         };
 
         try {
@@ -107,19 +107,19 @@
 
             const result = await response.text();
             if (response.ok) {
-                // Сообщение об успехе
+
                 window.location.href = 'balance.html';
             } else {
-                throw new Error(result); // Генерация ошибки, если ответ не OK
+                throw new Error(result);
             }
         } catch (error) {
-            document.getElementById('message').textContent = `Error: ${error.message}`; // Сообщение об ошибке
+            document.getElementById('message').textContent = `Error: ${error.message}`;
         }
     });
 
-    // Обработчик события для кнопки "Назад"
+
     document.getElementById('backButton').addEventListener('click', () => {
-        window.history.back(); // Возврат на предыдущую страницу
+        window.history.back();
     });
 </script>
 </body>

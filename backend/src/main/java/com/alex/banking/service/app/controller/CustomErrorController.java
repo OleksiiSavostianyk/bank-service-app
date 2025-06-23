@@ -1,4 +1,4 @@
-package com.alex.bankingservicesapp.controller;
+package com.alex.banking.service.app.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;

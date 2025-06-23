@@ -1,4 +1,4 @@
-package com.alex.bankingservicesapp.service.authorizationService;
+package com.alex.banking.service.app.service.authorizationService;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Component;

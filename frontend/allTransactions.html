@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Payments</title>
-    <link rel="stylesheet" href="css/style4.css"> <!-- Подключение стилей -->
+    <link rel="stylesheet" href="css/style4.css">
     <style>
-        /* Основные стили для темной темы */
+
         body {
-            background-color: #121212; /* Темный фон для всего документа */
-            color: white; /* Белый текст */
+            background-color: #121212;
+            color: white;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -19,64 +19,64 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #1f1f1f; /* Темный фон для контейнера */
-            border-radius: 12px; /* Закругленные углы */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Тень для глубины */
+            background-color: #1f1f1f;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         h1 {
             font-size: 2rem;
-            color: #ffffff; /* Белый текст заголовка */
+            color: #ffffff;
             margin-bottom: 20px;
         }
 
         .button-container {
             display: flex;
-            justify-content: space-between; /* Разместить кнопки по разным сторонам */
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
 
-        /* Стили для кнопок */
+
         #fetchPaymentsButton, #logoutButton {
             padding: 10px 20px;
-            background-color: #007bff; /* Синий фон для кнопок */
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1.1rem;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Тень для кнопок */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         #fetchPaymentsButton:hover, #logoutButton:hover {
-            background-color: #0056b3; /* Темно-синий фон при наведении */
+            background-color: #0056b3;
         }
 
         .payment {
-            background-color: #2a2a2a; /* Темный фон для каждого платежа */
+            background-color: #2a2a2a;
             border-radius: 8px;
             padding: 20px;
             margin: 10px 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Более сильная тень для карточек */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .payment h3 {
             margin: 0 0 10px;
-            color: #ffffff; /* Белый текст заголовков */
+            color: #ffffff;
         }
 
         .payment p {
             margin: 5px 0;
             font-size: 1.1rem;
-            color: #d0d0d0; /* Светло-серый текст для описаний */
+            color: #d0d0d0;
         }
 
         #loading {
             display: none;
             font-size: 1.5rem;
-            color: #007bff; /* Синий текст для индикатора загрузки */
+            color: #007bff;
             text-align: center;
             margin-top: 20px;
         }
@@ -87,14 +87,14 @@
     <h1>User Payments</h1>
 
     <div class="button-container">
-        <button id="fetchPaymentsButton">Fetch Payments</button> <!-- Кнопка для получения платежей -->
+        <button id="fetchPaymentsButton">Fetch Payments</button>
         <button id="logoutButton" onclick="toMenu()">Menu</button>
     </div>
 
     <div id="loading">Loading...</div>
-    <div id="paymentsContainer"></div> <!-- Контейнер для отображения платежей -->
+    <div id="paymentsContainer"></div>
 </div>
 
-<script src="js/payments.js"></script> <!-- Подключение JS -->
+<script src="js/payments.js"></script>
 </body>
 </html>

@@ -9,7 +9,6 @@ public class BCryptPasswordEncoder {
         return BCrypt.hashpw(rawPassword, BCrypt.gensalt());
     }
 
-    // Метод для проверки пароля
     public static boolean matches(String rawPassword, String encodedPassword) {
         return BCrypt.checkpw(rawPassword, encodedPassword);
     }

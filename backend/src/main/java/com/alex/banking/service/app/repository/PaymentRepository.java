@@ -9,5 +9,4 @@ import java.util.Optional;
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
     public Optional<Payment> findByPaymentID(Long id);
     public List<Payment> findBySenderID(Long id);
-//    public List<Payment> findByRecipientUsername(String recipientUsername);
 }

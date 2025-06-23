@@ -11,6 +11,6 @@ public class CustomErrorController {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleException(Exception e) {
-        return "Произошла ошибка: " + e.getMessage();
+        return "Error:  " + e.getMessage();
     }
 }

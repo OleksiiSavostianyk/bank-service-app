@@ -29,7 +29,7 @@ public class Payment {
     @Column(name = "recipient_username")
     private String recipientUsername;
 
-    @Column(name = "")
+    @Column(name = "recipient_Invoice")
     private long recipientInvoice;
 
     @Column(name = "money")

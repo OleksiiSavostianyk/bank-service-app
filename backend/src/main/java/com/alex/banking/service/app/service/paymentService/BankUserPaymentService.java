@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.HandlerMapping;
 
 import java.time.format.DateTimeFormatter;
@@ -35,6 +36,7 @@ public class BankUserPaymentService implements BankUserPaymentInterface {
 
 
     @Override
+    @Transactional
     public ResponseEntity<String> transfer(Payment payment) {
 
         try {
@@ -72,6 +74,7 @@ public class BankUserPaymentService implements BankUserPaymentInterface {
 
 
     @Override
+    @Transactional
     public boolean withdraw(double sum, BankUser bankUser) {
         try {
             BankUser sender = bankUserDataBaseConnector.findById(bankUser.getId());
@@ -119,6 +122,7 @@ public class BankUserPaymentService implements BankUserPaymentInterface {
 
 
 
+
     private BankUser findRecipient(Payment payment) {
         String id;
         Optional<BankUser> recipient ;
@@ -133,6 +137,7 @@ public class BankUserPaymentService implements BankUserPaymentInterface {
         return recipient.orElseThrow(() -> new UserNotFoundException("Recipient with id: " + id + " not found"));
     }
 
+    @Transactional
     public void savePayment(Payment payment, BankUser sender,BankUser receiver) {
         payment.setSenderID(sender.getId());
         payment.setSenderName(sender.getAccountName());

@@ -5,6 +5,7 @@ import com.alex.banking.service.app.models.Payment;
 import com.alex.banking.service.app.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +23,7 @@ public class PaymentServiceDataBaseConnector implements PaymentServiceDB{
     }
 
     @Override
+    @Transactional
     public Payment findPaymentById(long id) throws NoSuchPaymentException {
       Optional<Payment> payment = paymentRepository.findById(id);
       if (payment.isEmpty()) { throw new NoSuchPaymentException("Payment not found, id: " + id);
@@ -30,6 +32,7 @@ public class PaymentServiceDataBaseConnector implements PaymentServiceDB{
     }
 
     @Override
+    @Transactional
     public Payment savePayment(Payment payment) {
         payment.setDate(getDateNow());
         return paymentRepository.save(payment);

@@ -43,7 +43,7 @@ public class BankUserPaymentService implements BankUserPaymentInterface {
             BankUser recipient = findRecipient(payment);
             Optional<BankUser> sender = bankUserDataBaseConnector.findByAccountName(payment.getSenderName());
 
-            if (sender.isEmpty()) { return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); }
+            if (sender.isEmpty() ) { return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build(); }
 
             BankUser senderBankUser = sender.get();
             double newBalance = senderBankUser.getBalance() - payment.getMoney();
@@ -123,7 +123,8 @@ public class BankUserPaymentService implements BankUserPaymentInterface {
 
 
 
-    private BankUser findRecipient(Payment payment) {
+    @Override
+    public BankUser findRecipient(Payment payment) {
         String id;
         Optional<BankUser> recipient ;
         if (payment.getRecipientUsername() != null) {

@@ -4,6 +4,7 @@ import com.alex.banking.service.app.exception.UserNotFoundException;
 import com.alex.banking.service.app.models.BankUser;
 import com.alex.banking.service.app.models.Payment;
 import com.alex.banking.service.app.service.userService.BankUserDataBaseInterface;
+import net.bytebuddy.dynamic.DynamicType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -89,8 +90,15 @@ class BankUserPaymentServiceTest {
         assertEquals("Payment transferred successfully.", response.getBody());
     }
 
+
+
+
+
     @Test
     public void transfer_senderNotFound() {
+
+        when(bankUserDataBaseConnector.findByAccountName("recipient"))
+                .thenReturn(Optional.of(sender));
         when(bankUserDataBaseConnector.findByAccountName("sender"))
                 .thenReturn(Optional.empty());
 
@@ -98,14 +106,18 @@ class BankUserPaymentServiceTest {
         ResponseEntity<String> response = bankUserPaymentService.transfer(payment);
 
 
-
         assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+
+
     }
+
+
+
+
+
 
     @Test
     public void transfer_recipientNotFound() {
-        when(bankUserDataBaseConnector.findByAccountName("sender"))
-                .thenReturn(Optional.of(sender));
         when(bankUserDataBaseConnector.findByAccountName("recipient"))
                 .thenThrow(new UserNotFoundException("Recipient not found"));
 
@@ -143,8 +155,6 @@ class BankUserPaymentServiceTest {
 
     @Test
     public void transfer_genericException() {
-        when(bankUserDataBaseConnector.findByAccountName("sender"))
-                .thenReturn(Optional.of(sender));
         when(bankUserDataBaseConnector.findByAccountName("recipient"))
                 .thenThrow(new RuntimeException("Unexpected error"));
 

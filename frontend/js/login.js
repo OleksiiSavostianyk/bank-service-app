@@ -1,4 +1,4 @@
-// Обработчик отправки формы
+  // Обработчик отправки формы
 document.getElementById('login-form').addEventListener('submit', async function(event) {
     event.preventDefault(); // Отменяем стандартное поведение формы
 

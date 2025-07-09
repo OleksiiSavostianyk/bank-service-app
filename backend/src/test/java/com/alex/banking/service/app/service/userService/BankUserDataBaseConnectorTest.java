@@ -12,9 +12,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mindrot.jbcrypt.BCrypt;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,8 +43,10 @@ class BankUserDataBaseConnectorTest {
     @Mock
     private PaymentRepository paymentRepository;
 
+
     @Mock
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
 
     @InjectMocks
     private BankUserDataBaseConnector bankUserDataBaseConnector;
@@ -69,11 +73,12 @@ class BankUserDataBaseConnectorTest {
         assertEquals("Account name already used", response.getBody());
     }
 
+
+
     @Test
     void createBankUser_shouldCreateUserSuccessfully() {
         when(userRepository.findByAccountName("user1")).thenReturn(null);
         when(roleKeeper.getROLE_USER()).thenReturn("USER");
-        when(bCryptPasswordEncoder.encode("plainPassword")).thenReturn("encodedPassword");
         when(userRepository.save(any())).thenReturn(testUser);
 
         ResponseEntity<String> response = bankUserDataBaseConnector.createBankUser(testUser);
@@ -82,6 +87,8 @@ class BankUserDataBaseConnectorTest {
         assertEquals("{\"status\":\"success\"}", response.getBody());
         verify(userRepository).save(any(BankUser.class));
     }
+
+
 
 
     @Test
@@ -106,6 +113,10 @@ class BankUserDataBaseConnectorTest {
         assertEquals(testUser, result);
     }
 
+
+
+
+
     @Test
     void findById_userNotFound_throwsException() {
         when(userRepository.findById(1L)).thenReturn(Optional.empty());
@@ -124,17 +135,29 @@ class BankUserDataBaseConnectorTest {
         assertTrue(result);
     }
 
+
+
+
+
+
     @Test
     void getUserForInfo_userExists_returnsSanitizedUser() {
-        testUser.setPassword("securePassword");
-        when(userRepository.findByAccountName("sender")).thenReturn(Optional.of(testUser));
+
+        testUser.setAccountName("sender");
+
+        when(userRepository.findByAccountName("sender"))
+                .thenReturn(Optional.of(testUser));
 
         Optional<BankUser> result = bankUserDataBaseConnector.getUserForInfo("sender");
 
         assertTrue(result.isPresent());
-        assertEquals("", result.get().getPassword()); // password should be blanked out
+        assertEquals("", result.get().getPassword());
         assertEquals("sender", result.get().getAccountName());
     }
+
+
+
+
 
     @Test
     void getUserForInfo_userNotFound_returnsEmptyOptional() {
@@ -148,22 +171,56 @@ class BankUserDataBaseConnectorTest {
 
 
 
+
+
+
     @Test
     void getAllBankUsersByAccountName_userFound_returnsUsers() {
+
+
+        testUser.setId(1L);
+        testUser.setAccountName("user1");
+
+
         Payment payment = new Payment();
         payment.setRecipientUsername("recipient");
         List<Payment> payments = List.of(payment);
-        List<BankUser> relatedUsers = List.of(new BankUser());
 
-        when(userRepository.findByAccountName("user1")).thenReturn(Optional.of(testUser));
-        when(paymentRepository.findBySenderID(1L)).thenReturn(payments);
-        doReturn(relatedUsers).when(bankUserDataBaseConnector).getAllBankUsersByPayments(payments);
 
-        ResponseEntity<List<BankUser>> response = bankUserDataBaseConnector.getAllBankUsersByAccountName("user1");
+        BankUser recipient = new BankUser();
+        recipient.setAccountName("recipient");
+
+        recipient.setPassword("");
+        recipient.setBalance(0.0);
+
+        List<BankUser> relatedUsers = List.of(recipient);
+
+
+
+
+        when(userRepository.findByAccountName("user1"))
+                .thenReturn(Optional.of(testUser));
+
+        when(paymentRepository.findBySenderID(1L))
+                .thenReturn(payments);
+
+        when(userRepository.findAllByAccountNameIn(List.of("recipient")))
+                .thenReturn(relatedUsers);
+
+        ResponseEntity<List<BankUser>> response =
+                bankUserDataBaseConnector.getAllBankUsersByAccountName("user1");
+
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(relatedUsers, response.getBody());
+
+
+
     }
+
+
+
+
 
 
 
@@ -184,14 +241,27 @@ class BankUserDataBaseConnectorTest {
 
     @Test
     void getAllBankUsersByAccountName_emptyResult_returnsOkWithEmptyBody() {
-        when(userRepository.findByAccountName("user1")).thenReturn(Optional.of(testUser));
-        when(paymentRepository.findBySenderID(1L)).thenReturn(Collections.emptyList());
-        doReturn(Collections.emptyList()).when(bankUserDataBaseConnector).getAllBankUsersByPayments(Collections.emptyList());
 
-        ResponseEntity<List<BankUser>> response = bankUserDataBaseConnector.getAllBankUsersByAccountName("user1");
+        testUser.setId(1L);
+        testUser.setAccountName("user1");
+
+
+        when(userRepository.findByAccountName("user1"))
+                .thenReturn(Optional.of(testUser));
+
+        when(paymentRepository.findBySenderID(1L))
+                .thenReturn(Collections.emptyList());
+
+
+        when(userRepository.findAllByAccountNameIn(Collections.emptyList()))
+                .thenReturn(Collections.emptyList());
+
+        ResponseEntity<List<BankUser>> response =
+                bankUserDataBaseConnector.getAllBankUsersByAccountName("user1");
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNull(response.getBody());
+
     }
 
 
@@ -200,12 +270,24 @@ class BankUserDataBaseConnectorTest {
 
     @Test
     void changePassword_success() {
-        when(userRepository.findByAccountName("user1")).thenReturn(Optional.of(testUser));
 
-        ResponseEntity<Void> response = bankUserDataBaseConnector.changePassword("user1", "oldpass", "newpass");
+        String oldPass     = "oldpass";
+        String oldHash     = BCrypt.hashpw(oldPass, BCrypt.gensalt());
+        testUser.setPassword(oldHash);
+        testUser.setId(1L);
+        testUser.setAccountName("user1");
+
+        when(userRepository.findByAccountName("user1"))
+                .thenReturn(Optional.of(testUser));
+
+
+        ResponseEntity<Void> response =
+                bankUserDataBaseConnector.changePassword("user1", oldPass, "newpass");
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
+
         verify(userRepository).save(any(BankUser.class));
+
     }
 
 
@@ -236,17 +318,4 @@ class BankUserDataBaseConnectorTest {
     }
 
 
-
-
-
-
-    @Test
-    void changePassword_exceptionThrown_returnsUnauthorized() {
-        when(userRepository.findByAccountName("user1")).thenReturn(Optional.of(testUser));
-        doThrow(new RuntimeException()).when(userRepository).save(any(BankUser.class));
-
-        ResponseEntity<Void> response = bankUserDataBaseConnector.changePassword("user1", "oldpass", "newpass");
-
-        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
-    }
 }

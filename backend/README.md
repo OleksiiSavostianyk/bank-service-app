@@ -18,7 +18,7 @@ Features
 	•	Custom error handling (without Spring Security)
 	•	Fully dockerized setup (PostgreSQL expected to be running externally)
 
-Folder Structure
+Folder Structure 
 
 bank-serviсe-app/
 │
@@ -41,19 +41,22 @@ bank-serviсe-app/
 ├── docker-compose.yml
 └── README.md
 
-Docker Setup
-
 To run the application:
-	1.	Build images:
 
-docker build -t my-backend ./backend
-docker build -t my-frontend ./frontend
+1.	Start the database (PostgreSQL)
+Now the PostgreSQL container is included in docker-compose.yml, so you don’t need to run it manually. Just use Docker Compose — it will start automatically.
 
-	2.	Run with Docker Compose:
+2.	Make sure the backend (JAR) is built
+Before running the whole app, the backend (JAR) must be compiled. You can do this using the build section already configured in the Compose file.
 
-docker-compose up
+3.	Run the entire application
+Use the command below — it will build and start everything (backend, frontend, and PostgreSQL):
 
-PostgreSQL must be running in a separate container or externally. You can modify docker-compose.yml to include a DB service if needed.
+     docker-compose up --build
+
+
+
+
 
 Testing
 	•	Unit tests are written using JUnit and Mockito

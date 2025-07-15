@@ -18,28 +18,7 @@ Features
 	•	Custom error handling (without Spring Security)
 	•	Fully dockerized setup (PostgreSQL expected to be running externally)
 
-Folder Structure 
 
-bank-serviсe-app/
-│
-├── backend/
-│   ├── src/main/java/com/alex/banking/service/app/
-│   │   ├── config/
-│   │   ├── controller/
-│   │   ├── exception/
-│   │   ├── models/
-│   │   ├── repository/
-│   │   └── service/
-│   ├── Dockerfile
-│   └── pom.xml
-│
-├── frontend/
-│   ├── index.html
-│   ├── css/
-│   └── js/
-│
-├── docker-compose.yml
-└── README.md
 
 To run the application:
 
